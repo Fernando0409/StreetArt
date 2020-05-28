@@ -9,7 +9,7 @@
 }
 
 body {
-    background-color: #f3f5f9;
+    background-color: #dee0e2;
 }
 
 .wrapper {
@@ -116,17 +116,44 @@ body {
     width: 100%;
     margin-left: 200px;
     font-family: 'Oxygen', sans-serif;
-    ;
 }
 
 .wrapper .main_content .header {
-    padding: 22px;
+    padding: 10px;
     background: #333333;
     border-bottom: 1px solid #e0e4e8;
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.wrapper .main_content .header #navbar form input[type="submit"] {
+    height: 30px;
+    width: 100px;
+    border: none;
+    font-size: 18px;
+    background-color: #0ea828;
+    color: #fff;
+    font-family: 'Oxygen', sans-serif;
+}
+
+.wrapper .main_content .header #navbar form input[type="submit"]:hover {
+    cursor: pointer;
+    background-color: #2eee4e;
+    color: #fff;
+    transition: all 0.5s ease-out;
+}
+
+.wrapper .main_content .header #navbar form input[type="search"] {
+    height: 30px;
+    width: 300px;
+    font-size: 18px;
+    font-family: 'Oxygen', sans-serif;
 }
 
 .wrapper .main_content .info {
-    margin: 20px;
+    margin-top: 80px;
     margin-left: 60px;
     margin-right: 60px;
     color: #0e0d0db9;
@@ -179,6 +206,7 @@ body {
     background-color: #f12c2c;
     color: #fff;
     transition: all 0.5s ease-out;
+    cursor: pointer;
 }
 
 .wrapper .main_content .info #button_post #label_post {
@@ -195,4 +223,94 @@ body {
     background-color: #3191e0;
     color: #fff;
     transition: all 0.5s ease-out;
+    cursor: pointer;
+}
+
+.wrapper .main_content .post {
+    margin: 60px;
+    color: #0e0d0db9;
+    line-height: 25px;
+    background-color: #fff;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    border-top: 4px solid #333333;
+}
+
+.wrapper .main_content .post .description img {
+    height: 40px;
+    width: 40px;
+    vertical-align: middle;
+}
+
+.wrapper .main_content .post .description span {
+    margin-left: 15px;
+}
+
+.wrapper .main_content .post .description #info_post {
+    margin: 10px;
+}
+
+.wrapper .main_content .post .description #date {
+    float: right;
+}
+
+.wrapper .main_content .post .file_post {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    border-bottom: 4px solid #333333;
+}
+
+.wrapper .main_content .post .file_post img {
+    height: 400px;
+    width: 500px;
+    margin: 40px;
+}
+
+.wrapper .main_content .post .comments h3 {
+    padding: 10px;
+    text-decoration: none;
+}
+
+.wrapper .main_content .post .comments h3>a {
+    float: right;
+    color: #333333;
+}
+
+.wrapper .main_content .post .comments h3 #like {
+    margin-right: 30px;
+}
+
+.wrapper .main_content .post .comments>textarea {
+    resize: none;
+    width: 100%;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 15px;
+}
+
+.wrapper .main_content .post .subcomments {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.wrapper .main_content .post .subcomments img {
+    height: 40px;
+    width: 40px;
+    margin-right: 20px;
+}
+
+.wrapper .main_content .post .subcomments #like {
+    margin-right: 30px;
+}
+
+.wrapper .main_content .post .subcomments #comments {
+    margin-right: 30px;
+}
+
+.wrapper .main_content .post .subcomments #subcomment>a {
+    float: right;
+    color: #333333;
 }
