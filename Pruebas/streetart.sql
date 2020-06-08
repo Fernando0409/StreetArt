@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 08, 2020 at 04:43 AM
+-- Generation Time: Jun 08, 2020 at 06:06 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -31,11 +31,11 @@ SET time_zone = "+00:00";
 CREATE TABLE `data_user` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `follow` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`follow`)),
-  `followers` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`followers`)),
-  `city` varchar(70) NOT NULL,
-  `interest` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`interest`)),
-  `area_desarrollo` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`area_desarrollo`)),
+  `follow` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `followers` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `city` varchar(70) DEFAULT NULL,
+  `interest` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `area_desarrollo` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   `status_messages` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -48,7 +48,7 @@ CREATE TABLE `data_user` (
 CREATE TABLE `message` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `chats` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`chats`))
+  `chats` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -60,12 +60,12 @@ CREATE TABLE `message` (
 CREATE TABLE `post` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `description` varchar(300) NOT NULL,
+  `description` varchar(300) DEFAULT NULL,
   `date` date NOT NULL,
-  `file` varchar(50) NOT NULL,
+  `file` varchar(50) DEFAULT NULL,
   `tags` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`tags`)),
-  `reaction` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`reaction`)),
-  `comment` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`comment`))
+  `reaction` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `comment` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -83,6 +83,20 @@ CREATE TABLE `user` (
   `photo` varchar(50) DEFAULT NULL,
   `verify` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Triggers `user`
+--
+DELIMITER $$
+CREATE TRIGGER `add_username` AFTER INSERT ON `user` FOR EACH ROW BEGIN
+INSERT INTO data_user(username) VALUES(NEW.username);
+
+INSERT INTO message(username)
+VALUES(NEW.username);
+
+END
+$$
+DELIMITER ;
 
 --
 -- Indexes for dumped tables
