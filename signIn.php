@@ -60,10 +60,10 @@ if (isset($_POST['reg_user'])) {
     header('location: perfil.php');
   }
 }
-?
+? -->
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <!DOCTYPE html>
 <html>
@@ -79,13 +79,11 @@ if (isset($_POST['reg_user'])) {
 
 	<!--Custom styles-->
 	<link rel="stylesheet" type="text/css" href="resources/css/styles.css">
-	<link rel="stylesheet" type="text/css" href="resources/css/stylesheet.css">
 	
 </head>
 <body>
 <div id="id011" class="modal1">
 <span onclick="document.getElementById('id011').style.display='none'" class="close1" title="Close Modal">&times;</span>
-			<form class="modal-content1 animate" method="post" action="index.php"> 
 
 <div class="container1">
 	<div class="d-flex justify-content-center h-100">
@@ -113,7 +111,7 @@ if (isset($_POST['reg_user'])) {
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<input type="text" class="form-control" placeholder="Nickname" name="nickname" autocomplete="off" required>
+						<input type="text" class="form-control" placeholder="Nickname" name="username" autocomplete="off" required>
 					</div>
 					
 					<div class="input-group form-group">
@@ -152,7 +150,7 @@ if (isset($_POST['reg_user'])) {
 		    </div>
 	      </div>
 	    </div>
-	</form>
+
 </div>
 </body>
 </html>
