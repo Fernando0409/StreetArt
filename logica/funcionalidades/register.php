@@ -33,11 +33,11 @@
                 if(mysqli_query($conn, $sql)){
                     echo "Usuario registrado";
                     $_SESSION['username'] = $username;
-                    //header('location: ../../feed.php');
+                    header('location: ../../index.php'); // Debe confirmar a la pagina de confirmacion
                 }
                 else {
                     echo "Error: ".mysqli_error($conn);
-                    //header('location: ../../index.html');
+                    header('location: ../../menu.html');
                 }
     
             }
