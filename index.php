@@ -28,7 +28,7 @@
             </div>
             <ul class="menu">
                 <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
-                <li><a href="#"><i class="fas fa-user"></i>Profile</a></li>
+                <li><a href="perfil.php"><i class="fas fa-user"></i>Profile</a></li>
                 <li><a href="#"><i class="fas fa-bell"></i></i>Notifications</a></li>
                 <li><a href="#"><i class="fas fa-comment-dots"></i>Messages</a></li>
                 <li><a href="#"><i class="fas fa-align-justify"></i>Categories</a>
@@ -119,7 +119,7 @@
             </div>
 
         <?php
-            $query = "SELECT * FROM post";
+            $query = "SELECT * FROM post ORDER BY id DESC";
             $result = mysqli_query($conn, $query);
             
             while($users = mysqli_fetch_array($result)){
