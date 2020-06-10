@@ -190,7 +190,7 @@ body {
 }
 
 .wrapper .main_content .info input[type="file"],
-.wrapper .main_content .info input[type="submit"] {
+.wrapper .main_content .info button[type="submit"] {
     display: none;
 }
 

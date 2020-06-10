@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,19 +10,21 @@
 </head>
 
 <body>
-    <?php
+<?php
+        require_once 'logica/root.php';
+
         session_start();
-        $user_email = $_SESSION['email'];
-        
-        if(!isset($user_email))
+        $username = $_SESSION['username'];
+
+        if(!isset($username))
             header("Location: signUp.php");
-    ?>
+?>
     <div class="wrapper">
         <div class="sidebar">
             <h2>StreetArt</h2>
             <div class="perfil">
                 <div class="foto_perfil"><img src="resources/img/icons/profile.png" alt=""></div>
-                <div class="name"><?php echo "<span> $user_email </span>"?></div>
+                <div class="name"><?php echo "<span>$username</span>"?></div>
             </div>
             <ul class="menu">
                 <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
@@ -61,19 +64,22 @@
             </div>
 
             <div class="info">
-                <form action="#">
+                <form action="logica/funcionalidades/createPost.php" method="POST" enctype="multipart/form-data">
+                <!--input type="file" name="fileUser" id="file" value="file"-->
                     <div class="subtitle">
                         <h3>What are you think?...</h3>
                     </div>
-                    <div class="publications"><textarea placeholder="Write your comments" name="comentarios" rows="3"></textarea></div>
+                    <div class="publications">
+                        <textarea placeholder="Write your comments" name="comentarios" rows="3"></textarea>
+                    </div>
                     <div id="buttons">
                         <div id="button_file">
-                            <input type="file" value="File" id="file">
+                           <input type='file' value='File' id='file' name='fileUser'>
                             <label id="label_file" for="file"><i class="fas fa-upload"></i> &nbsp; Upload your files</label>
                         </div>
                         <div id="button_post">
-                            <input type="submit" value="Publish">
-                            <label id="label_post" for="submit"> Publish</label>
+                            <button type="submit" id="publicar" hidden="off"></button>
+                            <label id="label_post" for="publicar"> Publish</label>
                         </div>
                     </div>
                 </form>
@@ -112,7 +118,45 @@
                 </div>
             </div>
 
+        <?php
+            $query = "SELECT * FROM post";
+            $result = mysqli_query($conn, $query);
+            
+            while($users = mysqli_fetch_array($result)){
+                $ruta_img = $users['file'];
+                echo "
+                    <div class='post'>
+                        <div class='description'>
+                            <img src='resources/img/icons/profile1.png' alt='my_perfil'> <span>".$users['username']."</span>
+                            <p id='info_post'>".$users['description']."</p>
+                            <p id='date'>May 28th 2020 11:06</p>
+                        </div>
+                        <div class='file_post'>
+                            <img src='/Universidad/Equipo5_PI/servidor/imagenes/$ruta_img' alt='Hola'/>
+                        </div>
+                        <div class='comments'>
+                            <div class='header_comments'>
+                                <h3>comments
+                                <a id='share' href='#'><i class='fas fa-share'></i></a>
+                                <a id='like' href='#'><i class='fas fa-thumbs-up'></i></a></h3>
+                            </div>
+                            <textarea placeholder='Write your comments' name='comentarios' rows='1'></textarea>
+                        </div>
+                        <div class='subcomments'>
+                            <div id='perfil_subcomments'><img src='resources/img/icons/profile1.png' alt='my_perfil'></div>
+                            <div id='subcomment'>
+                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                                    Tenetur veritatis harum eaque mollitia perferendis blanditiis 
+                                    atque temporibus maxime cumque! Dicta ullam reprehenderit dolor 
+                                    quis nobis at labore dolores delectus error!</p>
+                                <a id='share' href='#'><i class='fas fa-share'></i></a>
+                                <a id='comments' href='#'><i class='fas fa-comments'></i></a>
+                                <a id='like' href='#'><i class='fas fa-thumbs-up'></i></a>
+                            </div>
+                        </div>
+                    </div>";
+            }
+        ?>
         </div>
 </body>
-
 </html>
