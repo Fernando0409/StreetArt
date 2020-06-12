@@ -18,14 +18,6 @@
 	<link rel="stylesheet" type="text/css" href="resources/css/styles.css">
 </head>
 <body>
-	<?php
-			session_start();
-			$user_email = $_SESSION['email'];
-			
-			if(isset($user_email))
-				header("Location: index.php");
-	?>
-
 <div id="id011" class="modal1">
 <span onclick="document.getElementById('id011').style.display='none'" class="close1" title="Close Modal">&times;</span>
 
