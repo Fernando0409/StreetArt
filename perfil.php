@@ -24,18 +24,44 @@
     require_once 'logica/root.php';
     session_start();
 
-    if(!isset($_SESSION['username']))
-        header("Location: signUp.php");
-    else{
-        
-        $username = $_SESSION['username'];
+    $userLink = $_SESSION['usuarioLink'];
+    $estado = $_SESSION['key'];
 
+    if(!isset($_SESSION['usernameLogin']))
+        header("Location: signUp.php");
+    
+    else if(!empty($userLink) && $estado == 1){
+
+        $userLink = $_SESSION['usuarioLink'];
         // De la tabla, de los datos usuarios. 
         $description_user = "";
         $name = ""; $email = "";
         $photo = ""; 
 
- 
+        // Consulta los datos del usuario 
+        $query = "SELECT * FROM data_user WHERE username = '{$userLink}'";
+        $result = mysqli_query($conn, $query);
+
+        while($users = mysqli_fetch_array($result))
+            $description_user = $users['description'];
+        
+        // Consulta los datos generales del usuario
+        $query = "SELECT * FROM user WHERE username = '{$userLink}'";
+        $result = mysqli_query($conn, $query);
+
+        while($users = mysqli_fetch_array($result)){
+            $name = $users['name'];
+            $email = $users['email'];
+            $photo= $users['photo'];
+        }
+
+    } else{
+        $username = $_SESSION['usernameLogin'];
+
+        // De la tabla, de los datos usuarios. 
+        $description_user = "";
+        $name = ""; $email = "";
+        $photo = ""; 
 
         // Consulta los datos del usuario 
         $query = "SELECT * FROM data_user WHERE username = '{$username}'";
@@ -53,21 +79,6 @@
             $email = $users['email'];
             $photo= $users['photo'];
         }
-
-        /*
-        // De la tabla post
-        $description = "";
-        $date = "";     $file = "";
-        $tags = "";     $reactions = "";
-        $comments = "";
-        
-        $query = "SELECT * FROM post WHERE username = '{$username}'";
-        $result = mysqli_query($conn, $query);
-
-        while($users = mysqli_fetch_array($result)){
-            $description = $users['description'];
-        }
-        */
     }
  ?>
 <div class="container" style="margin-top: 20px; margin-bottom: 20px;">
@@ -77,14 +88,27 @@
            <img src="http://lorempixel.com/output/people-q-c-100-100-1.jpg" class="img-thumbnail picture hidden-xs" />
            <img src="http://lorempixel.com/output/people-q-c-100-100-1.jpg" class="img-thumbnail visible-xs picture_mob" />
            <div class="header">
-                <h1> <?php echo $username ?></h1>
+                <h1> <?php 
+                        if(!empty($userLink) && $estado == 1)
+                            echo $userLink;
+                        else
+                            echo $username;
+                    ?>
+                </h1>
                 <h4>Areas: </h4>
-                <span><?php echo $description_user; ?></span>
+                <span><?php if(!empty($userLink) && $estado == 1)
+                                echo $description_user;
+                            else
+                                echo $username; 
+                        ?>
+                </span>
            </div>
         </div>
         <!-- son 3 botones difertentes que se encuentran en el archivo stylesheet.css -->
         <div class="col-md-3 bg_blur ">
-          <a href="#" class="follow_btn hidden-xs">Seguir</a>
+        <form action="logica/funcionalidades/follow.php" method="post">
+            <button type="submit" style="border: none;"><a class="follow_btn hidden-xs">Seguir</a></button>
+        </form>
           <a href="#" class="follow_btn2 hidden-xs">Mensaje</a>
           <a href="#" class="follow_btn3 hidden-xs">Donar</a>
     </div>
@@ -100,7 +124,7 @@
         <div class="col-md-1"></div>
         <div class="col-md-18 col-xs-12" style="margin:0px;padding:0px;">
             <!--well lo llama del archivo stylesheet.css es una clase -->
-            <a  href="#" class="col-md-2 col-xs-2 well"><i class="fa fa-camera fa-lg"> Biografia</i> </a>
+            <a  href="index.php" class="col-md-2 col-xs-2 well"><i class="fa fa-camera fa-lg"> Home</i> </a>
             <a  href="#" class="col-md-2 col-xs-2 well"><i class="fa fa-camera fa-lg"> Fotos</i> </a>
             <a  href="#" class="col-md-2 col-xs-2 well"><i class="fa fa-camera fa-lg"> Videos</i> </a>
             <a  href="#" class="col-md-2 col-xs-2 well"><i class="fa fa-camera fa-lg"> Seguidores</i> </a>
@@ -186,71 +210,29 @@
                 <!-- Post /////-->
                             <!-- aqui estan las publicaciones que pues ya tienes que jalar de la base de datos -->
                 <!--- \\\\\\\Post-->
-                <div class="card gedf-card">
-                    <div class="card-header">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="mr-2">
-                                    <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="Imagen de perfil">
-                                </div>
-                                <div class="ml-2">
-                                    <div class="h4 m-0"><?php echo $username; ?></div>
-                                    <div class="h5 text-muted"><?php echo $name; ?></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="dropdown">
-                                    <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fa fa-ellipsis-h"></i>
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
-                                        <div class="h6 dropdown-header">Configuration</div>
-                                        <a class="dropdown-item" href="#">Save</a>
-                                        <a class="dropdown-item" href="#">Hide</a>
-                                        <a class="dropdown-item" href="#">Report</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>Fecha de la publicacion</div>
-                        <p class="card-text"><?php echo $description_user ?></p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
-                        <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
-                        <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
-                    </div>
-                </div>
-                <!-- Post /////-->
 
     <?php
+        if(!empty($userLink) && $estado == 1){
 
-        $description = "";
-        $date = "";     $file = "";
-        $tags = "";     $reactions = "";
-        $comments = "";
+            $query = "SELECT * FROM post WHERE username = '{$userLink}'";
+            $result = mysqli_query($conn, $query);
 
-        $query = "SELECT * FROM post WHERE username = '{$username}'";
-        $result = mysqli_query($conn, $query);
-
-        while($users = mysqli_fetch_array($result)){
-            $file = $users['file'];
-            echo 
-                "
-                <div class='card gedf-card'>
-                <div class='card-header'>
-                    <div class='d-flex justify-content-between align-items-center'>
+            while($users = mysqli_fetch_array($result)){
+                $file = $users['file'];
+                echo 
+                    "
+                    <div class='card gedf-card'>
+                    <div class='card-header'>
                         <div class='d-flex justify-content-between align-items-center'>
-                            <div class='mr-2'>
-                                <img class='rounded-circle' width='45' src='https://picsum.photos/50/50' alt='Imagen de perfil'>
+                            <div class='d-flex justify-content-between align-items-center'>
+                                <div class='mr-2'>
+                                    <img class='rounded-circle' width='45' src='https://picsum.photos/50/50' alt='Imagen de perfil'>
+                                </div>
+                                <div class='ml-2'>
+                                    <div class='h4 m-0'>".$userLink."</div>
+                                    <div class='h5 text-muted'>".$userLink."</div>
+                                </div>
                             </div>
-                            <div class='ml-2'>
-                                <div class='h4 m-0'>".$username."</div>
-                                <div class='h5 text-muted'>".$name."</div>
-                            </div>
-                        </div>
                         <div>
                             <div class='dropdown'>
                                 <button class='btn btn-link dropdown-toggle' type='button' id='gedf-drop1' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
@@ -272,17 +254,76 @@
                     if(!empty($users['file'])){
                         echo "<img src='/Universidad/Equipo5_PI/servidor/imagenes/$file' width='65%' align='center'>";
                     } ?>
-            <?php
-            echo "
+                <?php
+                echo "
+                    </div>
+                    <div class='card-footer'>
+                        <a href='#' class='card-link'><i class='fa fa-gittip'></i> Like</a>
+                        <a href='#' class='card-link'><i class='fa fa-comment'></i> Comment</a>
+                        <a href='#' class='card-link'><i class='fa fa-mail-forward'></i> Share</a>
+                    </div>
                 </div>
-                <div class='card-footer'>
-                    <a href='#' class='card-link'><i class='fa fa-gittip'></i> Like</a>
-                    <a href='#' class='card-link'><i class='fa fa-comment'></i> Comment</a>
-                    <a href='#' class='card-link'><i class='fa fa-mail-forward'></i> Share</a>
+                    ";
+            }
+
+        } else{
+            $description = "";
+            $date = "";     $file = "";
+            $tags = "";     $reactions = "";
+            $comments = "";
+
+            $query = "SELECT * FROM post WHERE username = '{$username}'";
+            $result = mysqli_query($conn, $query);
+
+            while($users = mysqli_fetch_array($result)){
+                $file = $users['file'];
+                echo 
+                    "
+                    <div class='card gedf-card'>
+                    <div class='card-header'>
+                        <div class='d-flex justify-content-between align-items-center'>
+                            <div class='d-flex justify-content-between align-items-center'>
+                                <div class='mr-2'>
+                                    <img class='rounded-circle' width='45' src='https://picsum.photos/50/50' alt='Imagen de perfil'>
+                                </div>
+                                <div class='ml-2'>
+                                    <div class='h4 m-0'>".$username."</div>
+                                    <div class='h5 text-muted'>".$name."</div>
+                                </div>
+                            </div>
+                        <div>
+                            <div class='dropdown'>
+                                <button class='btn btn-link dropdown-toggle' type='button' id='gedf-drop1' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                                    <i class='fa fa-ellipsis-h'></i>
+                                </button>
+                                <div class='dropdown-menu dropdown-menu-right' aria-labelledby='gedf-drop1'>
+                                    <div class='h6 dropdown-header'>Configuration</div>
+                                    <a class='dropdown-item' href='#'>Save</a>
+                                    <a class='dropdown-item' href='#'>Hide</a>
+                                    <a class='dropdown-item' href='#'>Report</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-                ";
-            }            
+                <div class='card-body'>
+                    <div class='text-muted h7 mb-2'> <i class='fa fa-clock-o'></i>Fecha de la publicacion</div>
+                    <p class='card-text'>".$users['description']."</p>"?><?php
+                    if(!empty($users['file'])){
+                        echo "<img src='/Universidad/Equipo5_PI/servidor/imagenes/$file' width='65%' align='center'>";
+                    } ?>
+                <?php
+                echo "
+                    </div>
+                    <div class='card-footer'>
+                        <a href='#' class='card-link'><i class='fa fa-gittip'></i> Like</a>
+                        <a href='#' class='card-link'><i class='fa fa-comment'></i> Comment</a>
+                        <a href='#' class='card-link'><i class='fa fa-mail-forward'></i> Share</a>
+                    </div>
+                </div>
+                    ";
+            }
+        }   
     ?>
 
             </div>
