@@ -183,7 +183,11 @@ body {
     padding: 10px;
     font-size: 15px;
 }
+.wrapper .main_content .info .categories>h3 {
+    padding-bottom: 20px;
+}
 
+<<<<<<< HEAD
 .wrapper .main_content .info .categories>h3 {
     padding-bottom: 20px;
 }
@@ -192,6 +196,11 @@ body {
     width: 100%;
 }
 
+=======
+.wrapper .main_content .info .categories>table {
+    width: 100%;
+}
+>>>>>>> master
 .wrapper .main_content .info #buttons {
     display: flex;
     justify-content: space-between;

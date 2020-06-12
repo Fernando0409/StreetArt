@@ -4,16 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <title>StreetArt</title>
+<<<<<<< HEAD
     <link rel="stylesheet" href="resources/css/styles_film.css">
+=======
+    <link rel="stylesheet" href="/categorias/resources/css/styles_film.css">
+>>>>>>> master
     <script src="https://kit.fontawesome.com/66fa17c514.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <?php
+<<<<<<< HEAD
            require_once '../logica/root.php';
         session_start();
         $user_email = $_SESSION['username'];
 
+=======
+        session_start();
+        $user_email = $_SESSION['email'];
+        
+>>>>>>> master
         if(!isset($user_email))
             header("Location: signUp.php");
     ?>
@@ -26,12 +36,17 @@
                         <?php echo "<span> $user_email </span>"?></div>
                 </div>
                 <ul class="menu">
+<<<<<<< HEAD
                     <li><a href="../index.php"><i class="fas fa-home"></i>Home</a></li>
+=======
+                    <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
+>>>>>>> master
                     <li><a href="#"><i class="fas fa-user"></i>Profile</a></li>
                     <li><a href="#"><i class="fas fa-bell"></i></i>Notifications</a></li>
                     <li><a href="#"><i class="fas fa-comment-dots"></i>Messages</a></li>
                     <li><a href="#"><i class="fas fa-align-justify"></i>Categories</a>
                         <ul>
+<<<<<<< HEAD
                             <li><a href="baile.php"><i class="fas fa-shoe-prints"></i>Dance</a></li>
                             <li><a href="dibujo.php"><i class="fas fa-pencil-alt"></i>Drawing</a></li>
                             <li><a href="film.php"><i class="fas fa-film"></i>Film</a></li>
@@ -39,6 +54,15 @@
                             <li><a href="animacion.php"><i class="fas fa-file-video"></i>Animation</a></li>
                             <li><a href="fotografia.php"><i class="fas fa-camera-retro"></i>Fotography</a></li>
                             <li><a href="canto.php"><i class="fas fa-music"></i>Sing</a></li>
+=======
+                            <li><a href="#"><i class="fas fa-shoe-prints"></i>Dance</a></li>
+                            <li><a href="#"><i class="fas fa-pencil-alt"></i>Drawing</a></li>
+                            <li><a href="#"><i class="fas fa-film"></i>Film</a></li>
+                            <li><a href="#"><i class="fas fa-palette"></i>Paint</a></li>
+                            <li><a href="#"><i class="fas fa-file-video"></i>Animation</a></li>
+                            <li><a href="#"><i class="fas fa-camera-retro"></i>Fotography</a></li>
+                            <li><a href="#"><i class="fas fa-music"></i>Sing</a></li>
+>>>>>>> master
                         </ul>
                     </li>
                 </ul>
@@ -124,6 +148,7 @@
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
         <?php
             $categoria = "";
             $query = "SELECT * FROM categorias WHERE categoria = 'film'";
@@ -171,6 +196,9 @@
                 }
             }
         ?>
+=======
+
+>>>>>>> master
             </div>
 </body>
 

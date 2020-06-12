@@ -79,9 +79,15 @@
                             <h3>Selecciona la categoria de la publicacion</h3>
                             <table>
                                 <tr>
+<<<<<<< HEAD
                                     <td><input type="checkbox" name="baile" id="baile" value="baile"/>&nbsp;<label for="baile"><i class="fas fa-shoe-prints"></i>&nbsp; Baile</label> &nbsp;</td>
                                     <td><input type="checkbox" name="dibujo" id="dibujo" value="dibujo" />&nbsp;<label for="dibujo"><i class="fas fa-pencil-alt"></i>&nbsp;Dibujo</label> &nbsp;</td>
                                     <td><input type="checkbox" name="film" id="Film" value="Film" />&nbsp;<label for="Film"><i class="fas fa-film"></i>&nbsp;Film</label>&nbsp;</td>
+=======
+                                    <td><input type="checkbox" name="baile" id="baile" value="baile" />&nbsp;<label for="baile"><i class="fas fa-shoe-prints"></i>&nbsp; Baile</label> &nbsp;</td>
+                                    <td><input type="checkbox" name="dibujo" id="dibujo" value="dibujo" />&nbsp;<label for="dibujo"><i class="fas fa-pencil-alt"></i>&nbsp;Dibujo</label> &nbsp;</td>
+                                    <td><input type="checkbox" name="Film" id="Film" value="Film" />&nbsp;<label for="Film"><i class="fas fa-film"></i>&nbsp;Film</label>&nbsp;</td>
+>>>>>>> master
                                     <td><input type="checkbox" name="pintura" id="pintura" value="pintura" />&nbsp;<label for="pintura"><i class="fas fa-palette"></i>&nbsp;Pintura</label></td>
                                 </tr>
                                 <tr>
