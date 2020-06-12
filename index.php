@@ -18,6 +18,7 @@
 
         if(!isset($username))
             header("Location: signUp.php");
+            
 ?>
     <div class="wrapper">
         <div class="sidebar">

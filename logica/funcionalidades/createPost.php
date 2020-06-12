@@ -23,6 +23,7 @@
             // Imagenes
             if($typeFile == "image/jpeg" || $typeFile == "image/jpeg" || $typeFile == "image/png" || $typeFile == "image/gif"){
                 //                          C:\xampp\htdocs /Universidad\Equipo5_PI\servidor\imagenes/
+                
                 $carpetaDestino = $_SERVER['DOCUMENT_ROOT'].'/Universidad/Equipo5_PI/servidor/imagenes/';
                 move_uploaded_file($_FILES['fileUser']['tmp_name'], $carpetaDestino.$nameFile);
 
