@@ -141,7 +141,23 @@ if (isset($_POST['reg_user'])) {
 						</div>
 						<input type="password" class="form-control" placeholder="Repita la contraseña" name="password_2" autocomplete="off" required>
 					</div>
-
+					<div class="input-group form-group" id="checkbox">
+						<h3>Selecciona tus talentos</h3>
+						<input type="checkbox" name="baile" id="baile" value="baile"/> 
+						<label for="baile"><i class="fas fa-shoe-prints"></i>Baile</label>
+						<input type="checkbox" name="dibujo" id="dibujo" value="dibujo"/>
+						<label for="dibujo"><i class="fas fa-pencil-alt"></i>Dibujo</label>
+						<input type="checkbox" name="Film" id="Film" value="Film"/>
+						<label for="Film"><i class="fas fa-film"></i>Film</label>
+						<input type="checkbox" name="pintura" id="pintura" value="pintura"/>
+						<label for="pintura"><i class="fas fa-palette"></i>Pintura</label>
+						<input type="checkbox"  name="animacion" id="animacion" value="animacion"/>
+						<label for="animacion"><i class="fas fa-file-video"></i>Animacion</label>
+						<input type="checkbox" name="fotografia" id="fotografia" value="fotografia"/>
+						<label for="fotografia"><i class="fas fa-camera-retro"></i>Fotografia</label>
+						<input type="checkbox"  name="canto" id="canto" value="canto"/> 
+						<label for="canto"><i class="fas fa-music"></i>Canto</label>
+					</div>
 					<div class="mt-4">
 						<!--div class="d-flex justify-content-center links">
 							I already have an account <a href="singin.php" class="ml-2">login</a>
