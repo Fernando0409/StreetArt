@@ -1,7 +1,8 @@
 <!-- bootstrap no borrar  -->
-<?php 
-  session_start();
- ?>
+<?php
+session_start();
+
+?>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -69,7 +70,7 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <div class="h6 text-muted">seguidores recientes</div>
-                            <div class="h5">5.2342</div>
+                            <div class="h5">52,342</div>
                         </li>
                         <li class="list-group-item">
                             <div class="h6 text-muted">videos mas populares</div>

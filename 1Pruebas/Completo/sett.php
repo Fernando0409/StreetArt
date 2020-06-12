@@ -14,7 +14,8 @@
                 <ul class="nav nav-pills nav-stacked admin-menu"  >
                     <li class="active"><a href="" data-target-id="profile"><i class="glyphicon glyphicon-user"></i> datos generales</a></li>
                     <li><a href="" data-target-id="change-password"><i class="glyphicon glyphicon-lock"></i> Cambiar contraseña</a></li>
-                    <li><a href="" data-target-id="logout"><i class="glyphicon glyphicon-log-out"></i> Regresar</a></li>
+                    <li><a href="" data-target-id="logout"><i class="glyphicon glyphicon-share-alt"></i> Regresar</a></li>
+                    <li><a href="" data-target-id="exit"><i class="glyphicon glyphicon-log-out"></i>Cerrar sesion</a></li>
                 </ul>
             </div>
 
@@ -24,7 +25,7 @@
                         <h3 class="panel-title">username</h3>
                     </div>
                     <div class="panel-body">
-                        <?php echo $_SESSION['username']; ?> 
+                       <strong><?php echo $_SESSION['username']; ?></strong>
 <button onclick="document.getElementById('id011').style.display='block'" type="submit" style="width:auto;">editar</button>
   <div id="id011" class="modal1">
      <div class="clearfix1">
@@ -181,15 +182,14 @@ window.onclick = function(event) {
                 </form>
             </div>
 
-            <div class="col-md-9  admin-content" id="settings"></div>
 
             <div class="col-md-9  admin-content" id="logout">
                 <div class="panel panel-info" style="margin: 1em;">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Regresar</h3>
+                        <h3 class="panel-title">Regresar </h3>
                     </div>
                     <div class="panel-body">
-                       ¿quiere salir de configuraciones?
+                       ¿quiere regresar al perfil?
                         <a  href="#" class="label label-danger"
                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -199,7 +199,34 @@ window.onclick = function(event) {
                     </div>
                     <form id="logout-form" action="#" method="POST" style="display: none;">
                     </form>
-<!-- esto va en un archivo js si lo quiere uno mas ordenado y me dio hueva hacer el js para ahorrarme un paso :v  -->
+
+                </div>
+            </div>
+            <div class="col-md-9  admin-content" id="exit">
+                
+                <div class="panel panel-info" style="margin: 1em;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Cerrar sesion</h3>
+                    </div>
+                    <div class="panel-body">
+                       ¿quiere salir de streetart?
+                        <a  href="#" class="label label-danger"
+                            onclick="event.preventDefault();
+                                                     document.getElementById('exit-form').submit();">
+                            <span >   No  </span>
+                        </a>    
+                        <a href="logout.php" class="label label-success"> <span >  Yes   </span></a>
+                    </div>
+                    <form id="logout-form" action="#" method="POST" style="display: none;">
+                    </form>
+
+                </div>
+            </div>
+
+
+
+            </div>
+            <!-- esto va en un archivo js si lo quiere uno mas ordenado y me dio hueva hacer el js para ahorrarme un paso :v  -->
 <script>
          $(document).ready(function()
       {
@@ -223,7 +250,4 @@ window.onclick = function(event) {
 
 </script>
 <!-- hasta aqui -->
-                </div>
-            </div>
         </div>
-</div>
