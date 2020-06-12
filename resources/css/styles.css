@@ -82,3 +82,51 @@ background-color: white;
 .links{
 color: white;
 }
+
+#checkbox {
+    color: white;
+}
+
+#checkbox input[type=checkbox] {
+    display: none;
+}
+
+#checkbox label {
+    padding: 5px 15px 5px 51px;
+    display: inline-block;
+    font-size: 1em;
+    cursor: pointer;
+    position: relative;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#checkbox label:hover {
+    background-color: rgba(0, 116, 217, 0.2);
+}
+
+#checkbox label::before {
+    content: "";
+    width: 17px;
+    height: 17px;
+    display: inline-block;
+    background: none;
+    border: 3px solid #0774D9;
+    border-radius: 3px;
+    position: absolute;
+    left: 17px;
+    top: 8px;
+}
+
+#checkbox input[type="checkbox"]:checked+label {
+    padding: 5px 15px;
+    background: #0774D9;
+    border-radius: 2px;
+    color: white;
+    margin: 5px;
+}
+
+#checkbox input[type="checkbox"]:checked+label::before {
+    display: none;
+}
