@@ -2,7 +2,7 @@
     session_start();
     require_once 'logica/root.php';
 
-    $username = $_SESSION['username'];
+    $username = $_SESSION['usernameLogin'];
 
     if(!isset($username))
         header("Location: signUp.php");
@@ -32,11 +32,7 @@
                         <h3 class="panel-title">username</h3>
                     </div>
                     <div class="panel-body">
-<<<<<<< HEAD:sett.php
-                        <?php echo $username; ?> 
-=======
-                       <strong><?php echo $_SESSION['username']; ?></strong>
->>>>>>> master:1Pruebas/Completo/sett.php
+                        <?php echo $username; ?>    
 <button onclick="document.getElementById('id011').style.display='block'" type="submit" style="width:auto;">editar</button>
   <div id="id011" class="modal1">
      <div class="clearfix1">
