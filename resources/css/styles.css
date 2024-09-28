@@ -129,4 +129,8 @@ color: white;
 
 #checkbox input[type="checkbox"]:checked+label::before {
     display: none;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> master

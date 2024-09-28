@@ -1,5 +1,12 @@
-<?php 
-  session_start();
+<?php
+    session_start();
+    require_once 'logica/root.php';
+
+    $username = $_SESSION['usernameLogin'];
+
+    if(!isset($username))
+        header("Location: signUp.php");
+    
  ?>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
@@ -25,7 +32,7 @@
                         <h3 class="panel-title">username</h3>
                     </div>
                     <div class="panel-body">
-                       <strong><?php echo $_SESSION['username']; ?></strong>
+                        <?php echo $username; ?>    
 <button onclick="document.getElementById('id011').style.display='block'" type="submit" style="width:auto;">editar</button>
   <div id="id011" class="modal1">
      <div class="clearfix1">

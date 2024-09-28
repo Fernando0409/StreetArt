@@ -24,7 +24,7 @@
         while($users = mysqli_fetch_array($result)){
             $username = $users['username'];
         }
-          $_SESSION['username'] = $username;
+          $_SESSION['usernameLogin'] = $username;
           header('location: ../../index.php');
       } 
       else { // De lo contrario revisara si se logeo con el username
@@ -34,7 +34,7 @@
           $array = mysqli_fetch_array($result);
 
           if($array['contar'] > 0){
-            $_SESSION['username'] = $correo;
+            $_SESSION['usernameLogin'] = $correo;
             header('location: ../../index.php');
           } else 
               echo "Verifica los datos";

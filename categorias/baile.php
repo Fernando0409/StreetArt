@@ -4,14 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <title>StreetArt</title>
-    <link rel="stylesheet" href="/categorias/resources/css/styles_baile.css">
+    <link rel="stylesheet" href="resources/css/styles_baile.css">
     <script src="https://kit.fontawesome.com/66fa17c514.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <?php
+           require_once '../logica/root.php';
         session_start();
-        $user_email = $_SESSION['email'];
+        $user_email = $_SESSION['usernameLogin'];
         
         if(!isset($user_email))
             header("Location: signUp.php");
@@ -25,19 +26,19 @@
                         <?php echo "<span> $user_email </span>"?></div>
                 </div>
                 <ul class="menu">
-                    <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
+                    <li><a href="../index.php"><i class="fas fa-home"></i>Home</a></li>
                     <li><a href="#"><i class="fas fa-user"></i>Profile</a></li>
                     <li><a href="#"><i class="fas fa-bell"></i></i>Notifications</a></li>
                     <li><a href="#"><i class="fas fa-comment-dots"></i>Messages</a></li>
                     <li><a href="#"><i class="fas fa-align-justify"></i>Categories</a>
                         <ul>
-                            <li><a href="#"><i class="fas fa-shoe-prints"></i>Dance</a></li>
-                            <li><a href="#"><i class="fas fa-pencil-alt"></i>Drawing</a></li>
-                            <li><a href="#"><i class="fas fa-film"></i>Film</a></li>
-                            <li><a href="#"><i class="fas fa-palette"></i>Paint</a></li>
-                            <li><a href="#"><i class="fas fa-file-video"></i>Animation</a></li>
-                            <li><a href="#"><i class="fas fa-camera-retro"></i>Fotography</a></li>
-                            <li><a href="#"><i class="fas fa-music"></i>Sing</a></li>
+                            <li><a href="baile.php"><i class="fas fa-shoe-prints"></i>Dance</a></li>
+                            <li><a href="dibujo.php"><i class="fas fa-pencil-alt"></i>Drawing</a></li>
+                            <li><a href="film.php"><i class="fas fa-film"></i>Film</a></li>
+                            <li><a href="pintura.php"><i class="fas fa-palette"></i>Paint</a></li>
+                            <li><a href="animacion.php"><i class="fas fa-file-video"></i>Animation</a></li>
+                            <li><a href="fotografia.php"><i class="fas fa-camera-retro"></i>Fotography</a></li>
+                            <li><a href="canto.php"><i class="fas fa-music"></i>Sing</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -96,13 +97,13 @@
 
                 <div class="post">
                     <div class="description">
-                        <img src="resources/img/icons/profile1.png" alt="my_perfil"> <span>Mario Hazael</span>
+                        <img src="../resources/img/icons/profile1.png" alt="my_perfil"> <span>Mario Hazael</span>
                         <p id="info_post">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum, numquam deserunt reiciendis necessitatibus placeat maxime ut qui doloribus est magni dignissimos. Culpa eos fugiat perspiciatis temporibus unde aperiam debitis neque?
                         </p>
                         <p id="date">May 28th 2020 11:06</p>
                     </div>
                     <div class="file_post">
-                        <img src="resources/img/Github.jpg" alt="">
+                        <img src="../resources/img/Github.jpg" alt="">
                     </div>
                     <div class="comments">
                         <div class="header_comments">
@@ -113,7 +114,7 @@
                         <textarea placeholder="Write your comments" name="comentarios" rows="1"></textarea>
                     </div>
                     <div class="subcomments">
-                        <div id="perfil_subcomments"><img src="resources/img/icons/profile1.png" alt="my_perfil"></div>
+                        <div id="perfil_subcomments"><img src="../resources/img/icons/profile1.png" alt="my_perfil"></div>
                         <div id="subcomment">
                             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur veritatis harum eaque mollitia perferendis blanditiis atque temporibus maxime cumque! Dicta ullam reprehenderit dolor quis nobis at labore dolores delectus error!
                             </p>
@@ -123,6 +124,53 @@
                         </div>
                     </div>
                 </div>
+        <?php
+            $categoria = "";
+            $query = "SELECT * FROM categorias WHERE categoria = 'baile'";
+            $result = mysqli_query($conn, $query);
+            
+            while($users = mysqli_fetch_array($result)){
+                $id_post = $users['id_post'];
+            
+                $query = "SELECT * FROM post WHERE id = '$id_post'";
+                $result = mysqli_query($conn, $query);
+            
+                while($users1 = mysqli_fetch_array($result)){
+                    $ruta_img = $users1['file'];
+                    echo "
+                        <div class='post'>
+                            <div class='description'>
+                                <img src='../resources/img/icons/profile1.png' alt='my_perfil'> <span>".$users1['username']."</span>
+                                <p id='info_post'>".$users1['description']."</p>
+                                <p id='date'>Categoria: Animacion</p>
+                            </div>
+                            <div class='file_post'>
+                                <img src='/Universidad/Equipo5_PI/servidor/imagenes/$ruta_img' alt='Hola'/>
+                            </div>
+                            <div class='comments'>
+                                <div class='header_comments'>
+                                    <h3>comments
+                                    <a id='share' href='#'><i class='fas fa-share'></i></a>
+                                    <a id='like' href='#'><i class='fas fa-thumbs-up'></i></a></h3>
+                                </div>
+                                <textarea placeholder='Write your comments' name='comentarios' rows='1'></textarea>
+                            </div>
+                            <div class='subcomments'>
+                                <div id='perfil_subcomments'><img src='../resources/img/icons/profile1.png' alt='my_perfil'></div>
+                                <div id='subcomment'>
+                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                                        Tenetur veritatis harum eaque mollitia perferendis blanditiis 
+                                        atque temporibus maxime cumque! Dicta ullam reprehenderit dolor 
+                                        quis nobis at labore dolores delectus error!</p>
+                                    <a id='share' href='#'><i class='fas fa-share'></i></a>
+                                    <a id='comments' href='#'><i class='fas fa-comments'></i></a>
+                                    <a id='like' href='#'><i class='fas fa-thumbs-up'></i></a>
+                                </div>
+                            </div>
+                        </div>";
+                }
+            }
+        ?>
 
             </div>
 </body>
